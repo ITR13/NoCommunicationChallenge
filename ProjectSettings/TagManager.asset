@@ -14,13 +14,13 @@ TagManager:
   - 
   - 
   - 
+  - Ground
+  - 
+  - Player
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Collectible
+  - Interactable
   - 
   - 
   - 
