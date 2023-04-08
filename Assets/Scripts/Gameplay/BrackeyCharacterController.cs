@@ -1,8 +1,12 @@
+using Gameplay;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class BrackeyCharacterController : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerAnimationsHandler animationHandler;
+    
     [SerializeField] private float m_JumpForce = 400f;
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;
@@ -15,6 +19,7 @@ public class BrackeyCharacterController : MonoBehaviour
     [SerializeField] private PlayerAbilities m_PlayerAbilities;
 
     const float k_GroundedRadius = .2f;
+    [SerializeField]
     private bool m_Grounded;
     const float k_CeilingRadius = .2f;
     private Rigidbody2D m_Rigidbody2D;
@@ -64,9 +69,11 @@ public class BrackeyCharacterController : MonoBehaviour
         }
     }
 
-
     public void Move(float move, bool crouch, bool jump)
     {
+        animationHandler.SetLanded(m_Grounded);
+        animationHandler.SetMove(move);
+
         if (!crouch && m_CeilingCheck)
         {
             if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
@@ -114,14 +121,15 @@ public class BrackeyCharacterController : MonoBehaviour
                 Flip();
             }
         }
+
         if (jump && (m_Grounded || m_PlayerAbilities.ExpendAirJump()))
         {
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            animationHandler.Jump();
         }
     }
-
-
+    
     private void Flip()
     {
         m_FacingRight = !m_FacingRight;

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Gameplay;
 using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
+    [SerializeField] private PlayerAnimationsHandler playerAnimator;
     [SerializeField] private BrackeyCharacterController characterController;
 
     private bool _heldJumpLastFrame, _jump, _crouch;
