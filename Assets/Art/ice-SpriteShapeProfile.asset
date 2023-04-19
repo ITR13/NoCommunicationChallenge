@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7181f404f1447c0a7a17b3070b952b, type: 3}
+  m_Name: ice-SpriteShapeProfile
+  m_EditorClassIdentifier: 
+  m_Angles:
+  - m_Start: -45
+    m_End: 45
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 768961937, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+    - {fileID: 620286044, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+    - {fileID: 1262533110, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+    - {fileID: 727457734, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_Start: 45
+    m_End: 135
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 26407516, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_Start: 135
+    m_End: 224
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 1131378263, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_Start: -135
+    m_End: -45
+    m_Order: 0
+    m_Sprites:
+    - {fileID: 1642083367, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  m_FillTexture: {fileID: 2800000, guid: 5e98bd05341a5bf4daf164821d16fde0, type: 3}
+  m_CornerSprites:
+  - m_CornerType: 0
+    m_Sprites:
+    - {fileID: 991394521, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 1
+    m_Sprites:
+    - {fileID: -1796239673, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 2
+    m_Sprites:
+    - {fileID: 1441760635, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 3
+    m_Sprites:
+    - {fileID: -751578074, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 4
+    m_Sprites:
+    - {fileID: 33711276, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 5
+    m_Sprites:
+    - {fileID: 358165458, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 6
+    m_Sprites:
+    - {fileID: 1352736899, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  - m_CornerType: 7
+    m_Sprites:
+    - {fileID: -647811828, guid: 4da684cc8563bc74bac69569b2d71032, type: 3}
+  m_FillOffset: 0
+  m_UseSpriteBorders: 1
