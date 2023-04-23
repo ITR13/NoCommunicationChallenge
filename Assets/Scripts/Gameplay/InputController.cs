@@ -43,8 +43,6 @@ public class InputController : MonoBehaviour
         if (Input.GetButtonUp("Jump") || Input.GetAxis("Vertical") < -0.1)
         {
             _jumpEnded = true;
-            print("Jump ended");
-            print (Input.GetAxis("Vertical"));
         }
 
         // Read the inputs for crouching

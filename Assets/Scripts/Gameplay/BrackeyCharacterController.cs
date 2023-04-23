@@ -155,6 +155,7 @@ public class BrackeyCharacterController : MonoBehaviour
         if (jump && (m_Grounded || m_PlayerAbilities.ExpendAirJump()))
         {
             m_Grounded = false;
+            m_Rigidbody2D.velocity = Vector2.zero;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             animationHandler.Jump();
         }
