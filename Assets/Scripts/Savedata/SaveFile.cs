@@ -10,7 +10,7 @@ public class SaveFile
         { "TotalAirJumps", new() },
         { "TotalAirJumpsFromShop", new() },
         { "AirJumpsRemaining", new() },
-        { "Money", new(5) },
+        { "Money", new(0) },
         { "CoolStuff", new() },
     };
     

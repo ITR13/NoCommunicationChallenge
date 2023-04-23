@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 class UiShop : MonoBehaviour
 {
     private const int MaxShopAirjumps = 5;
-    private const int AirJumpPrice = 5;
+    public const int AirJumpPrice = 5;
     [SerializeField] private Button _buyAirjumpButton;
 
 
@@ -20,6 +21,11 @@ class UiShop : MonoBehaviour
         _totalJumpsFromShop.OnValueChanged += UpdateBuyAirjump;
         _money.OnValueChanged += UpdateBuyAirjump;
         UpdateBuyAirjump(0);
+
+       //Rename the button to also have the current jump price
+        _buyAirjumpButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Buy Airjump ({AirJumpPrice})"; 
+        Debug.Log($"Shop opened. Total jumps from shop: {_totalJumpsFromShop.Value}, total jumps: {_totalJumps.Value}, money: {_money.Value}");
+
     }
 
     private void OnDisable()

@@ -10,6 +10,9 @@ namespace Utils
         [SerializeField]
         private float speed = 0.1f;
 
+        [SerializeField]
+        private float delay = 0f;
+
         private bool goBack = false;
         private Vector3 startPos;
         
@@ -20,6 +23,9 @@ namespace Utils
 
         private void Update()
         {
+            //IF time since start is not greater than delay, return
+            if (Time.timeSinceLevelLoad < delay) return;
+            
             var pos = transform.position;
             var target = startPos + range;
 
@@ -28,6 +34,9 @@ namespace Utils
                 target = startPos;
             }
             
+
+            
+
             pos.x = Mathf.MoveTowards(pos.x, target.x, speed * Time.deltaTime);
             pos.y = Mathf.MoveTowards(pos.y, target.y, speed * Time.deltaTime);
             transform.position = pos;
