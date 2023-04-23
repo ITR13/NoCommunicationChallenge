@@ -18,6 +18,7 @@ public class SaveFile
     {
         { "CheckpointX", new() },
         { "CheckpointY", new() },
+        { "SlideDamage", new(0f) },
     };
 
     public SaveFile(string saveName)

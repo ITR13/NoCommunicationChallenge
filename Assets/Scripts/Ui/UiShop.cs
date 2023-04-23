@@ -6,10 +6,13 @@ class UiShop : MonoBehaviour
 {
     private const int MaxShopAirjumps = 5;
     public const int AirJumpPrice = 5;
+    public const int SlideDamagePrice = 5;
     [SerializeField] private Button _buyAirjumpButton;
+    [SerializeField] private Button _buySlideDamageUpButton;
 
 
     private SavedInt _totalJumpsFromShop, _totalJumps, _money;
+    private SavedFloat _slideDamage;
 
     private void OnEnable()
     {
@@ -17,10 +20,11 @@ class UiShop : MonoBehaviour
         _totalJumpsFromShop = saveFile.SavedInts["TotalAirJumpsFromShop"];
         _totalJumps = saveFile.SavedInts["TotalAirJumps"];
         _money = saveFile.SavedInts["Money"];
+        _slideDamage = saveFile.SavedFloats["SlideDamage"];
 
-        _totalJumpsFromShop.OnValueChanged += UpdateBuyAirjump;
-        _money.OnValueChanged += UpdateBuyAirjump;
-        UpdateBuyAirjump(0);
+        _totalJumpsFromShop.OnValueChanged += UpdatePurchaseables;
+        _money.OnValueChanged += UpdatePurchaseables;
+        UpdatePurchaseables(0);
 
        //Rename the button to also have the current jump price
         _buyAirjumpButton.GetComponentInChildren<TextMeshProUGUI>().text = $"Buy Airjump ({AirJumpPrice})"; 
@@ -30,14 +34,15 @@ class UiShop : MonoBehaviour
 
     private void OnDisable()
     {
-        _totalJumpsFromShop.OnValueChanged -= UpdateBuyAirjump;
-        _money.OnValueChanged -= UpdateBuyAirjump;
+        _totalJumpsFromShop.OnValueChanged -= UpdatePurchaseables;
+        _money.OnValueChanged -= UpdatePurchaseables;
     }
 
 
-    private void UpdateBuyAirjump(int _)
+    private void UpdatePurchaseables(int _)
     {
         _buyAirjumpButton.interactable = _money.Value >= AirJumpPrice && _totalJumpsFromShop.Value < MaxShopAirjumps;
+        _buySlideDamageUpButton.interactable = _money.Value >= SlideDamagePrice;
     }
 
     public void BuyAirjump()
@@ -46,5 +51,12 @@ class UiShop : MonoBehaviour
         _money.SetValue(_money.Value - AirJumpPrice);
         _totalJumpsFromShop.SetValue(_totalJumpsFromShop.Value + 1);
         _totalJumps.SetValue(_totalJumps.Value + 1);
+    }
+
+    public void BuySlideDamageUp()
+    {
+        if (_money.Value < SlideDamagePrice) return;
+        _money.SetValue(_money.Value - SlideDamagePrice);
+        _slideDamage.SetValue(_slideDamage.Value + 5);
     }
 }

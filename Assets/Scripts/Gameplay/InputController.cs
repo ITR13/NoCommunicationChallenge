@@ -8,10 +8,12 @@ public class InputController : MonoBehaviour
 
     private bool _heldJumpLastFrame, _jump, _jumpEnded, _crouch;
     private float _moveX;
+    private SaveFile saveFile;
 
     private void Awake()
     {
         RespawnAtCheckpoint();
+        saveFile = SaveManager.GetSave();
     }
 
     public void RespawnAtCheckpoint()
@@ -26,7 +28,7 @@ public class InputController : MonoBehaviour
     private void Update()
     {
         // Read the inputs for jumping
-        if (Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.1)
+        if (Input.GetButton("Jump"))
         {
             if (!_heldJumpLastFrame)
             {
@@ -40,13 +42,9 @@ public class InputController : MonoBehaviour
             _heldJumpLastFrame = false;
         }
 
-        if (Input.GetButtonUp("Jump") || Input.GetAxis("Vertical") < -0.1)
-        {
-            _jumpEnded = true;
-        }
 
         // Read the inputs for crouching
-        _crouch = Input.GetAxis("Vertical") < 0.1;
+        _crouch = Input.GetAxis("Vertical") < -0.1;
         // Read the inputs for moving
         _moveX = Input.GetAxis("Horizontal");
 
@@ -58,11 +56,19 @@ public class InputController : MonoBehaviour
         {
             SaveManager.DeleteSave();
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            saveFile.SavedInts["Money"].SetValue(saveFile.SavedInts["Money"].Value + 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void FixedUpdate()
     {
-        characterController.Move(_moveX, _crouch, _jump, _jumpEnded);
+        characterController.Move(_moveX, _crouch, _jump, _jumpEnded, _crouch);
         _jump = false;
     }
 

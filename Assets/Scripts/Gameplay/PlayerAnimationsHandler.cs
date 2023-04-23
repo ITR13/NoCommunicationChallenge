@@ -8,6 +8,7 @@ namespace Gameplay
         private const string IsInMotion = "IsInMotion";
         private const string JumpTrigger = "JumpTrigger";
         private const string LandedParameter = "IsLanded";
+        private const string SlidingParameter = "IsSliding";
 
         [SerializeField]
         private float moveTreshold = 0.1f;
@@ -21,5 +22,6 @@ namespace Gameplay
         public void Jump() => _animator.SetTrigger(JumpTrigger);
         
         public void SetLanded(bool value) => _animator.SetBool(LandedParameter, value);
+        public void SetSliding(bool value) => _animator.SetBool(SlidingParameter, value);
     }
 }

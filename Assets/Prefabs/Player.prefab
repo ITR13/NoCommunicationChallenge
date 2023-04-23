@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309997268857930940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.096, z: 0}
+  m_LocalPosition: {x: 0, y: -1.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -69,6 +69,7 @@ Transform:
   - {fileID: 309997269848850231}
   - {fileID: 309997268857930941}
   - {fileID: 931558754513274383}
+  - {fileID: 4896284207456295751}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -106,9 +107,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationHandler: {fileID: 2477496167685255276}
-  m_JumpForce: 400
+  m_JumpForce: 15
   m_CrouchSpeed: 0.36
-  m_MovementSmoothing: 0.05
+  m_MovementSmoothing: 0
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
@@ -117,7 +118,10 @@ MonoBehaviour:
   m_CeilingCheck: {fileID: 0}
   m_CrouchDisableCollider: {fileID: 0}
   m_PlayerAbilities: {fileID: 309997269150925783}
+  SlidingMaterial: {fileID: 6200000, guid: bc7557de77de6fb4c9da4540c1653104, type: 2}
+  NormalMaterial: {fileID: 0}
   m_Grounded: 0
+  m_Sliding: 0
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -126,9 +130,10 @@ MonoBehaviour:
       m_Calls: []
   jumpSound: {fileID: 8300000, guid: dfaaa6f5a04d52e4380c2dc24bbeaee4, type: 3}
   audioSource: {fileID: 3048155488515579571}
-  gravityWhileJumpingMultiplier: 1
-  gravityWhileFallingMultiplier: 5
-  terminalVelocity: 10
+  gravityWhileJumpingMultiplier: 3
+  gravityWhileFallingMultiplier: 8
+  terminalVelocity: 15
+  speed: 12
 --- !u!114 &309997269150925785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa3c0410627ef1147ae4333fdf5f12b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_damageCheck: {fileID: 4896284207456295751}
 --- !u!114 &2477496167685255276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,7 +307,7 @@ Transform:
   m_GameObject: {fileID: 309997269563620362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.022, y: -0.502, z: 0}
-  m_LocalScale: {x: 1.8065624, y: 1.2421288, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 309997269150925787}
@@ -321,7 +327,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Size: {x: 0.5, y: 1.08}
   m_Direction: 0
 --- !u!1 &309997269848850232
 GameObject:
@@ -570,6 +576,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1468423580580110038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4896284207456295751}
+  m_Layer: 0
+  m_Name: DamageCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4896284207456295751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468423580580110038}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.65, y: -0.77, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 309997269150925787}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4647720150676077778
 GameObject:
   m_ObjectHideFlags: 0
