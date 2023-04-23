@@ -14,7 +14,7 @@ public class InputController : MonoBehaviour
         RespawnAtCheckpoint();
     }
 
-    private void RespawnAtCheckpoint()
+    public void RespawnAtCheckpoint()
     {
         var savedata = SaveManager.GetSave();
         var x = savedata.SavedFloats["CheckpointX"].Value;
