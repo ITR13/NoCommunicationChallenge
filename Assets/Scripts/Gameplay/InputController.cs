@@ -54,6 +54,10 @@ public class InputController : MonoBehaviour
         {
             RespawnAtCheckpoint();
         }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            SaveManager.DeleteSave();
+        }
     }
 
     private void FixedUpdate()
