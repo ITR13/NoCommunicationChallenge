@@ -38,6 +38,9 @@ public class BrackeyCharacterController : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
+    public AudioClip jumpSound;
+    public AudioSource audioSource;
+
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -158,6 +161,8 @@ public class BrackeyCharacterController : MonoBehaviour
             m_Rigidbody2D.velocity = Vector2.zero;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             animationHandler.Jump();
+            //Play jump sound
+            audioSource.PlayOneShot(jumpSound);
         }
         //If player havent reach apoapsis and they are still holding jump
         // Apply jumping gravity
