@@ -1,3 +1,4 @@
+using System;
 using Gameplay;
 using UnityEngine;
 using UnityEngine.Events;
@@ -69,7 +70,36 @@ public class BrackeyCharacterController : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool crouch, bool jump)
+    public float gravityWhileJumpingMultiplier = 1f;
+    public float gravityWhileFallingMultiplier = 2f;
+    public float terminalVelocity = 10f;
+    public enum JumpState { Grounded, Jumping, Falling };
+    private void ApplyGravity(JumpState jumpState)
+    {
+        //Switch on jump state
+        switch(jumpState)
+        {
+            //If grounded, reset gravity and set velocity to zero
+            case JumpState.Grounded:
+                //Do Nothing
+                break;
+            //If jumping, apply jumping gravity
+            case JumpState.Jumping:
+                //Add the normal gravity
+                m_Rigidbody2D.AddForce(new Vector2(0,Physics2D.gravity.y * gravityWhileJumpingMultiplier));
+                Debug.DrawLine(transform.position, transform.position + new Vector3(0, Physics2D.gravity.y * gravityWhileJumpingMultiplier), Color.green);
+                break;
+            //If falling, apply falling gravity
+            case JumpState.Falling:
+                m_Rigidbody2D.AddForce(new Vector2(0, Physics2D.gravity.y * gravityWhileFallingMultiplier));
+                Debug.DrawLine(transform.position, transform.position + new Vector3(0, Physics2D.gravity.y * gravityWhileFallingMultiplier), Color.red);
+                break;
+        }
+        
+    
+    }
+
+    public void Move(float move, bool crouch, bool jump, bool jumpEnded)
     {
         animationHandler.SetLanded(m_Grounded);
         animationHandler.SetMove(move);
@@ -121,12 +151,23 @@ public class BrackeyCharacterController : MonoBehaviour
                 Flip();
             }
         }
-
+        // If the player should jump...
         if (jump && (m_Grounded || m_PlayerAbilities.ExpendAirJump()))
         {
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
             animationHandler.Jump();
+        }
+        //If player havent reach apoapsis and they are still holding jump
+        // Apply jumping gravity
+        if (!jumpEnded && m_Rigidbody2D.velocity.y > 0)
+        {
+            ApplyGravity(JumpState.Jumping);
+        }
+        //Else, the player want to fall or they have reached apoapsis
+        else
+        {
+            ApplyGravity(JumpState.Falling);
         }
     }
     
