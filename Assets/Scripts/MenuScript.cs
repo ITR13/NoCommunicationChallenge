@@ -31,7 +31,7 @@ public class MenuScript : MonoBehaviour
         if (_started) return;
         _started = true;
         
-        Loading.SceneToLoad = _gameScene;
+        Loading.SceneToLoad = "Game";
         SceneManager.LoadScene(0);
     }
 }
