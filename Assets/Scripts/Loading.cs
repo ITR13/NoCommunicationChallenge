@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -26,7 +25,7 @@ public class Loading : MonoBehaviour
 
         while (!menuOp.IsDone)
         {
-            loadingBar.fillAmount = (menuOp.PercentComplete) / 2;
+            loadingBar.fillAmount = menuOp.PercentComplete;
             yield return null;
         }
         loadingBar.fillAmount = 1;
