@@ -9,7 +9,7 @@ public class GameScript : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        Loading.SceneToLoad = "MainMenu";
+        Loading.SceneToLoad = _menuScene;
         SceneManager.LoadScene(0);
     }
 

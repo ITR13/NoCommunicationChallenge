@@ -12,8 +12,7 @@ public class Loading : MonoBehaviour
     [SerializeField] private AssetReference menuSceneReference;
     [SerializeField] private Image loadingBar;
 
-    //public static AssetReference SceneToLoad;
-    public static string SceneToLoad;
+    public static AssetReference SceneToLoad;
 
     private void Awake()
     {
@@ -23,12 +22,11 @@ public class Loading : MonoBehaviour
     private IEnumerator Start()
     {
         yield return null;
-        //var menuOp = SceneToLoad.LoadSceneAsync(LoadSceneMode.Single, true);
+        var menuOp = SceneToLoad.LoadSceneAsync(LoadSceneMode.Single, true);
 
-        AsyncOperation menuOp = SceneManager.LoadSceneAsync(SceneToLoad);
-        while (!menuOp.isDone)
+        while (!menuOp.IsDone)
         {
-            loadingBar.fillAmount = (menuOp.progress) / 2;
+            loadingBar.fillAmount = (menuOp.PercentComplete) / 2;
             yield return null;
         }
         loadingBar.fillAmount = 1;
@@ -40,6 +38,6 @@ public class Loading : MonoBehaviour
     {
         var loading = FindObjectOfType<Loading>();
         if(loading == null) return;
-        SceneToLoad = "MainMenu";
+        SceneToLoad = loading.menuSceneReference;
     }
 }
